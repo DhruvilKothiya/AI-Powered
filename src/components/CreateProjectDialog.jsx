@@ -34,7 +34,7 @@ const CreateProjectDialog = ({ open, onClose, onCreate }) => {
       open={open} 
       onClose={onClose} 
       fullWidth 
-      maxWidth="md"
+      maxWidth="sm"
       PaperProps={{
         sx: {
           borderRadius: 2,
@@ -67,106 +67,103 @@ const CreateProjectDialog = ({ open, onClose, onCreate }) => {
           Configure your project name, upload documents, and select key details to extract.
         </Typography>
 
-        <Grid container spacing={3}>
-          {/* Left Column - Project Configuration */}
-          <Grid item xs={12} md={6}>
-            <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2.5 }}>
-              <TextField
-                label="Project Name"
-                placeholder="e.g., Q1 2024 Invoices"
-                fullWidth
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                size="medium"
-              />
+        <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2.5, maxWidth: '600px' }}>
+          <TextField
+            label="Project Name"
+            placeholder="e.g., Q1 2024 Invoices"
+            fullWidth
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            size="medium"
+          />
 
-              <TextField
-                select
-                label="Template"
-                fullWidth
-                value={template}
-                onChange={(e) => setTemplate(e.target.value)}
-                size="medium"
-                displayEmpty
-              >
-                <MenuItem value="">Select a template</MenuItem>
-                <MenuItem value="invoice">Invoice Template</MenuItem>
-                <MenuItem value="contract">Contract Template</MenuItem>
-                <MenuItem value="resume">Resume Template</MenuItem>
-              </TextField>
+          <TextField
+            select
+            label="Template"
+            fullWidth
+            value={template}
+            onChange={(e) => setTemplate(e.target.value)}
+            size="medium"
+            displayEmpty
+          >
+            <MenuItem value="">Select a template</MenuItem>
+            <MenuItem value="invoice">Invoice Template</MenuItem>
+            <MenuItem value="contract">Contract Template</MenuItem>
+            <MenuItem value="resume">Resume Template</MenuItem>
+          </TextField>
 
-              <Box>
-                <Typography 
-                  variant="subtitle2" 
-                  sx={{ mb: 1.5, fontWeight: 600, color: '#333' }}
-                >
-                  Upload Documents
-                </Typography>
-                <Box
-                  sx={{
-                    border: '2px dashed #d0d0d0',
-                    borderRadius: 2,
-                    p: 3,
-                    textAlign: 'center',
-                    cursor: 'pointer',
-                    bgcolor: '#fafafa',
-                    '&:hover': { 
-                      borderColor: '#1976d2',
-                      bgcolor: '#f5f5f5',
-                    },
-                    transition: 'all 0.2s ease',
-                  }}
-                >
-                  <CloudUploadIcon sx={{ fontSize: 32, mb: 1, color: '#999' }} />
-                  <Typography variant="body2" sx={{ mb: 0.5, fontWeight: 500 }}>
-                    Drop documents here or click to browse
-                  </Typography>
-                  <Typography variant="caption" color="text.secondary">
-                    Supports PDF, DOCX, TXT files up to 10MB each
-                  </Typography>
-                  <input
-                    type="file"
-                    hidden
-                    multiple
-                    onChange={(e) => setFile(e.target.files[0])}
-                  />
-                </Box>
-              </Box>
-            </Box>
-          </Grid>
-
-          {/* Right Column - Select Fields to Extract */}
-          <Grid item xs={12} md={6}>
-            <Box>
-              <Typography 
-                variant="subtitle2" 
-                sx={{ mb: 1.5, fontWeight: 600, color: '#333' }}
-              >
-                Select Fields to Extract
-              </Typography>
-              <Box 
-                sx={{ 
-                  minHeight: 200,
-                  p: 2,
-                  border: '1px solid #e0e0e0',
+          <Box>
+            <Typography 
+              variant="subtitle2" 
+              sx={{ mb: 1.5, fontWeight: 600, color: '#333' }}
+            >
+              Upload Documents
+            </Typography>
+            <Box sx={{ display: 'flex', gap: 4 }}>
+              <Box
+                sx={{
+                  border: '2px dashed #d0d0d0',
                   borderRadius: 2,
+                  p: 3,
+                  textAlign: 'center',
+                  cursor: 'pointer',
                   bgcolor: '#fafafa',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
+                  flex: 1,
+                  '&:hover': { 
+                    borderColor: '#1976d2',
+                    bgcolor: '#f5f5f5',
+                  },
+                  transition: 'all 0.2s ease',
                 }}
               >
-                <Typography 
-                  variant="body2" 
-                  color="text.secondary"
-                  sx={{ textAlign: 'center' }}
-                >
-                  No fields available.
+                <CloudUploadIcon sx={{ fontSize: 32, mb: 1, color: '#999' }} />
+                <Typography variant="body2" sx={{ mb: 0.5, fontWeight: 500 }}>
+                  Drop documents here or click to browse
                 </Typography>
+                <Typography variant="caption" color="text.secondary">
+                  Supports PDF, DOCX, TXT files up to 10MB each
+                </Typography>
+                <input
+                  type="file"
+                  hidden
+                  multiple
+                  onChange={(e) => setFile(e.target.files[0])}
+                />
+              </Box>
+              
+              <Box
+                sx={{
+                  border: '2px dashed #d0d0d0',
+                  borderRadius: 2,
+                  p: 3,
+                  textAlign: 'center',
+                  cursor: 'pointer',
+                  bgcolor: '#fafafa',
+                  flex: 1,
+                  '&:hover': { 
+                    borderColor: '#1976d2',
+                    bgcolor: '#f5f5f5',
+                  },
+                  transition: 'all 0.2s ease',
+                }}
+              >
+                <CloudUploadIcon sx={{ fontSize: 32, mb: 1, color: '#999' }} />
+                <Typography variant="body2" sx={{ mb: 0.5, fontWeight: 500 }}>
+                  Drop documents here or click to browse
+                </Typography>
+                <Typography variant="caption" color="text.secondary">
+                  Supports PDF, DOCX, TXT files up to 10MB each
+                </Typography>
+                <input
+                  type="file"
+                  hidden
+                  multiple
+                  onChange={(e) => setFile(e.target.files[0])}
+                />
               </Box>
             </Box>
-          </Grid>
-        </Grid>
+          </Box>
+        </Box>
       </DialogContent>
       
       <DialogActions sx={{ px: 3, py: 2, gap: 1 }}>
